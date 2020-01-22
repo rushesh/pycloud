@@ -1,0 +1,108 @@
+<div *ngIf="this.get_logged_in_user"> 
+    <div *ngFor="let resultObj of result">
+        <table class="table">
+            <thead  class="thead-dark">
+                <tr>
+                <th>
+                        Key
+                </th>
+                <th>
+                        Value
+                </th>
+            </tr>
+            </thead>
+           <tr  class="table-success">
+               <td>
+                Title
+               </td>
+               <td>
+                {{resultObj.title}}
+               </td>
+           </tr> 
+           <tr  class="table-info">
+            <td>
+            FirstName
+            </td>
+            <td>
+                {{resultObj.firstname}}
+            </td>
+        </tr> 
+        <tr  class="table-danger">
+            <td>
+                Lastname
+            </td>
+            <td>
+                {{resultObj.lastname}}
+            </td>
+        </tr> 
+        <tr  class="table-warning">
+            <td>
+Emailid
+            </td>
+            <td>
+                {{resultObj.emailid}}
+            </td>
+        </tr> 
+        <tr  class="table-light">
+            <td>
+Username
+            </td>
+            <td>
+                {{resultObj.username}}
+            </td>
+        </tr> 
+        <tr  class="table-secondary">
+            <td>
+        Password
+            </td>
+            <td>
+                {{resultObj.password}}
+            <!-- </td>
+            <td> -->
+                <button type="button" class="btn btn-primary" (click)="openModal(template)">Change Password</button>
+ 
+                <ng-template #template>
+                  <div class="modal-header">
+                    <h4 class="modal-title pull-left">Change Password</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label>Password</label>
+                                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            
+                                </div>
+                            </div>
+                            <div class="form-group col">
+                                <label>Confirm Password</label>
+                                <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                                <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                                    <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                                    <div *ngIf="f.confirmPassword.errors.minlength">Password must be at least 6 characters</div>
+                                    <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-primary mr-1">Register</button>
+                            <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+                        </div>
+                        </form>
+
+                  </div>
+                </ng-template>
+                
+                
+            </td>
+        </tr> 
+        </table>
+</div>
+</div>
+<div *ngIf="!this.get_logged_in_user"> Login to view your profile </div>
